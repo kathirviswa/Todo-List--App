@@ -1,3 +1,7 @@
 {
-    "livePreview.defaultPreviewPath": "/src/index.html"
+    "livePreview.defaultPreviewPath": "/src/index.html",
+    "cSpell.words": [
+        "rendertodos",
+        "savetodos"
+    ]
 }

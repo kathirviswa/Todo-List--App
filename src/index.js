@@ -1,0 +1,30 @@
+document.addEventListener ("DOMContentLoaded",()=>{
+    const todoInput = document.getElementById("todoInput");
+    const addTodoBtn = document.getElementById ("addTodo");
+     const todoList = document.getElementById ("todoList"); // UL LIST ID 
+     const todos =JSON.parse(localstorage.getItem("todos")) || [];
+     
+     // functions will be save the localhost
+     function savetodos(){
+        localStorage.setItem("todos", JSON.stringify(todos));
+     }
+         //todo list will be cleared
+     function rendertodos(){
+        todoList.innerHTML = "";
+        todos.forEach((todo,index) => {
+            const li = document.createElement("li"); //add the todo list to create newly
+             li.className = "flex items-center justify-between bg-grey-500 text-white rounded-lg p-3 py-2 px-4 mb-2 shadow-md";
+              li.innerHTML = `
+              
+              <div class= "flex items-center space-x-2">
+              <input type = "checkbox" class="form-checkbox h-5 w-5 text-red-500" 
+              ${todo.completed ? "checked": ""} 
+              <span class="todo-text ${todo.completed ? "line-through text-red-600" :" text-gray-600"}"${todo.text}>
+              </span>
+              
+              </div>
+              `
+            
+            });
+     }
+})
