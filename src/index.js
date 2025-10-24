@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const li = document.createElement("li"); //add the todo list to create newly
       li.className =
         "flex items-center justify-between bg-gray-50  rounded-lg p-3 shadow-sm";
-      // flex items-center justify-between bg-gray-500 p-3 rounded-md shadow-sm
+      
         li.innerHTML = `
               
               <div class= "flex items-center space-x-2">
