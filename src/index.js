@@ -62,14 +62,22 @@ document.addEventListener("DOMContentLoaded", () => {
         todoList.appendChild(li);
       });
     };
-
+     //reference add button
     addTodoBtn.addEventListener("click", () => {
-      const todoText = todoInput.value.trim();
-      if (todoText !== "") {
+      const todoText = todoInput.ariaValueMax.trim();
+      if (todoText) {
         todos.push({ text: todoText, completed: false });
         todoInput.value = "";
         saveTodos();
         renderTodos();
       }
-    })
+    });
+
+    // reference todo input
+    todoInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        addTodoBtn.click();
+      }
+    });
+    renderTodos();
   });
