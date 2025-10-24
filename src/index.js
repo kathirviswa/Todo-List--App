@@ -5,11 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const todos = JSON.parse(localstorage.getItem("todos")) || [];
 
   // functions will be save the localhost
-  function savetodos() {
+  function saveTodos() {
     localStorage.setItem("todos", JSON.stringify(todos));
   }
   //todo list will be cleared
-  function rendertodos() {
+  function renderTodos() {
     todoList.innerHTML = "";
     todos.forEach((todo, index) => {
       const li = document.createElement("li"); //add the todo list to create newly
@@ -32,23 +32,44 @@ document.addEventListener("DOMContentLoaded", () => {
               </div>
               </div>
               `;
-      // reference checkbox
+     // reference checkbox
       const checkbox = li.querySelector(".form-checkbox");
       checkbox.addEventListener("change", () => {
         todo.completed = checkbox.ariaChecked;
-        savetodos();
-        rendertodos();
+        saveTodos();
+        renderTodos();
       });
+
       // reference edit button
       const editBtn = li.querySelector(".Edit-btn");
       editBtn.addEventListener("click", () => {
         const newText = prompt("Enter new text", todo.text);
         if (newText !== null) {
           todo.text = newText.trim();
-          savetodos();
-          rendertodos();
+          saveTodos();
+          renderTodos();
         }
         })
+
+        // reference delete button
+        const deleteBtn = li.querySelector(".Delete-btn");
+        deleteBtn.addEventListener("click", () => {
+          todos.splice(index, 1); //current index todo array will be deleted
+          saveTodos();
+          renderTodos();
+        });
+
+        todoList.appendChild(li);
       });
     };
+
+    addTodoBtn.addEventListener("click", () => {
+      const todoText = todoInput.value.trim();
+      if (todoText !== "") {
+        todos.push({ text: todoText, completed: false });
+        todoInput.value = "";
+        saveTodos();
+        renderTodos();
+      }
+    })
   });
